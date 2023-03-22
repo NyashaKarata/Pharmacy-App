@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+
+{% block toolbar %}
+    <a class="btn btn-primary" href="{% url 'create-key' %}">+ Create </a>
+{% endblock %}
+
+{% block content %}
+<h3>Keys<h3>
+<div class="nk-block card card-bordered">
+    <table class="table table-ulogs">
+        <thead class="table-light">
+            <tr>
+                <th class="tb-col-os"><span class="overline-title">Name</span></th>
+                <th class="tb-col-os"><span class="overline-title">Origin Key</span></th>
+                <th class="tb-col-os"><span class="overline-title">Destinition Key</span></th>
+                <th class="tb-col-os"><span class="overline-title">Length</span></th>
+                <th class="tb-col-os"><span class="overline-title">Is Required</span></th>
+                <th class="tb-col-os"><span class="overline-title">Key Type</span></th>
+                <th class="tb-col-os"><span class="overline-title">Is Enabled</span></th>
+                <th class="tb-col-os"><span class="overline-title">Output</span></th>
+
+
+            </tr>            
+        </thead>
+        <tbody>
+            {% for key in key %}
+            <tr>
+                <td class="tb-col-os">{{key.name}}</td>
+                <td class="tb-col-os">{{key.origin_key}}</td>
+                <td class="tb-col-os">{{key.destination_key}}</td>
+                <td class="tb-col-os">{{key.length}}</td>
+                <td class="tb-col-os">{{key.is_required}}</td>
+                <td class="tb-col-os">{{key.key_type}}</td>
+                <td class="tb-col-os">{{key.is_enabled}}</td>
+                <td class="tb-col-os">{{key.output}}</td>
+                <td class="tb-col-os"><a class="btn btn-secondary" href="{% url 'update-key' key.pk %}">Edit </a></td>
+                <td class="tb-col-os"><a class="btn btn-danger" href="{% url 'delete-key' key.pk %}">Delete </a></td>
+               
+            </tr>
+       
+            {% endfor %}  
+        </tbody>
+    </table>
+</div><!-- .nk-block-head -->
+
+{% endblock %}

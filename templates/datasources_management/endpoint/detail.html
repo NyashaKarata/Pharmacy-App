@@ -1,0 +1,127 @@
+{% extends 'layouts/base.html' %}
+
+
+
+{% block toolbar %}
+<a href="{% url 'update-endpoint_authentication' endpoint.authentication.pk %}" class="btn btn-secondary"> Edit Auth </a>
+<a href="{% url 'update-endpoint' endpoint.pk %}" class="btn btn-secondary"> Edit Endpoint </a>
+<a href="{% url 'generate_endpoint_output' endpoint.pk %}" class="btn btn-primary"> Load Output Keys </a>
+<a href="{% url 'generate_endpoint_output_report' endpoint.pk %}" class="btn btn-primary"> Generate Report </a>
+{% endblock %}
+
+{% block content %}
+    <h3>{{ endpoint.name }}</h3>
+    <h6>{{ endpoint.description }}</h6>
+
+    <br><br>
+   
+    {% if endpoint.output %}
+
+        <h5>Output Keys</h5>
+        <div class="card card-bordered card-preview">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Origin Key</th>
+                        <th>Destination Key</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    
+                        {% for key in endpoint.output.keys.all %}
+                            {% if key.origin_key != key.destination_key %}
+                            <tr>
+                                <td>{{ key.origin_key }}</td>
+                                <td><a href="{% url 'update-key' key.pk %}">{{ key.destination_key }}</a></td>
+                            </tr>
+                            
+                            {% endif %}
+                        {% endfor%}
+                     
+                        
+                </tbody>
+            </table>
+            <ul>
+                
+            </ul>
+            <table class="table table-orders">
+                <thead class="tb-odr-head">
+                    <tr class="tb-odr-item">
+                        <th class="tb-odr-info">
+                            <span class="tb-odr-id">Origin Key</span>
+                            <span class="tb-odr-date d-none d-md-inline-block">Key Type</span>
+                            
+                        </th>
+                        <th class="tb-odr-amount">
+                            <span class="tb-odr-total">Is Enabled</span>
+                            <span class="tb-odr-status d-none d-md-inline-block">Destination Key</span>
+                        </th>
+                        <th class="tb-odr-action">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody class="tb-odr-body">
+                    {% for key in endpoint.output.keys.all %}
+                
+                    <tr class="tb-odr-item">
+                        <td class="tb-odr-info">
+                            <span class="tb-odr-id"><a href="{% url 'update-key' key.pk %}">{{ key.origin_key }}</a></span>
+                            <span class="tb-odr-date">{{ key.key_type }}</span>
+                        </td>
+                        <td class="tb-odr-amount">
+                            <span class="tb-odr-total">
+
+                                <span class="badge badge-dot bg-{% if key.is_enabled %}success{%else%}danger{%endif%}">{{ key.is_enabled }}</span>
+                            </span>
+                            <span class="tb-odr-status">
+                                <span class="badge badge-dot bg-primary">{{ key.destination_key }}</span>
+                            </span>
+                        </td>
+                        <td class="tb-odr-action">
+                            <div class="tb-odr-btns d-none d-md-inline">
+                                <a href="{% url 'toggle-key' key.pk %}" class="btn btn-sm btn-secondary">Toggle</a>
+                            </div>
+                            {% comment %} <div class="dropdown">
+                                <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
+                                    <ul class="link-list-plain">
+                                        <li><a href="#" class="text-primary">Edit</a></li>
+                                        <li><a href="#" class="text-primary">View</a></li>
+                                        <li><a href="#" class="text-danger">Remove</a></li>
+                                    </ul>
+                                </div>
+                            </div> {% endcomment %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+        
+    {% endif %}
+    <br><br>
+
+    <h5>Credentials </h5><a class="btn btn-secondary" href="{% url 'create-credential' %}">+ Create</a>
+    <br/><br/>
+    <ul class="list-group">
+        {% for credential in endpoint.credentials.all %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'detail-credential' credential.pk %}">{{ credential.name}}</a>
+            <span class="badge badge-dim rounded-pill bg-primary">Is Active: {{credential.is_active}}</span>
+            <span class="badge badge-dim rounded-pill bg-primary">{{ credential.credential_entries.all|length}} Entries</span>
+            </li>
+        {% empty %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            
+            <strong>No Credentials For This Endoint.</strong>
+            
+            </li>
+        {% endfor %}
+        
+      </ul>
+
+{% endblock%}

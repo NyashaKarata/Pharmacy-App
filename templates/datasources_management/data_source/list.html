@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+
+{% block toolbar %}
+    <a class="btn btn-primary" href="{% url 'create-data_source' %}">+ Create </a>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for data_source in data_sources %}
+            <!-- With Footer Header -->
+            <div class="card card-bordered">
+                <div class="card-header border-bottom">{{ data_source.name }}</div>
+                <div class="card-body">
+                    
+                    {% if data_source.connections.all|length >= 1 %}
+                        <h5 class="card-title">{{ data_source.connections.first.domain }}</h5>
+                    {% else %}
+                        <a class="btn btn-secondary" href="{% url 'create-connection' %}">+ Set Up Connection</a>
+                    {% endif %}
+
+                    
+                    {% comment %} <p class="card-text">Credential</p> {% endcomment %}
+                    <a href="{% url 'detail-data_source' data_source.pk %}" class="btn btn-primary">Work</a>
+                </div>
+                <div class="card-footer border-top text-muted">Number of Endpoints</div>
+            </div>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

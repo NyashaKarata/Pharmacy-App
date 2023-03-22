@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+
+{% block toolbar %}
+    <a class="btn btn-primary" href="{% url 'create-converter' %}">+ Create </a>
+{% endblock %}
+
+{% block content %}
+<h3>Converters<h3>
+    <div class="nk-block card card-bordered">
+        <table class="table table-ulogs">
+            <thead class="table-light">
+                <tr>
+                    <th class="tb-col-os"><span class="overline-title">Output</span></th>
+                </tr>            
+            </thead>
+            <tbody>
+                {% for converter in converter %}
+                <tr>
+                    <td class="tb-col-os">{{converter.output}}</td>
+                    <td class="tb-col-os"><a class="btn btn-secondary" href="{% url 'update-converter' converter.pk %}">Edit </a></td>
+                    <td class="tb-col-os"><a class="btn btn-danger" href="{% url 'delete-converter' converter.pk %}">Delete </a></td>
+                   
+                </tr>
+           
+                {% endfor %}  
+            </tbody>
+        </table>
+    </div><!-- .nk-block-head -->
+
+{% endblock %}

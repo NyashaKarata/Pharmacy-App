@@ -1,0 +1,81 @@
+{% extends 'layouts/base.html' %}
+{% load static%}
+
+{% block content%}
+
+<div class="card card-bordered">
+    <div class="card-aside-wrap">
+        <div class="card-inner card-inner-lg">
+            <div class="nk-block-head nk-block-head-lg">
+                <div class="nk-block-between">
+                    <div class="nk-block-head-content">
+                        <h5 class="nk-block-title">Endpoints</h5>
+                        
+                    </div>
+                    <div class="nk-block-head-content align-self-start d-lg-none">
+                        <a href="#" class="toggle btn btn-icon btn-trigger mt-n1" data-target="userAside"><em class="icon ni ni-menu-alt-r"></em></a>
+                    </div>
+                </div>
+            </div><!-- .nk-block-head -->
+            
+            {% comment %} Endpoints list goes here {% endcomment %}
+            <div class="nk-block card card-bordered">
+                <table class="table table-ulogs">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="tb-col-os"><span class="overline-title">Authentication URL</span></th>
+                            <th class="tb-col-os"><span class="overline-title">Route</span></th>
+                            <th class="tb-col-os"><span class="overline-title">Description</span></th>
+                            <th class="tb-col-os"><span class="overline-title">Is Enabled</span></th>
+                            <th class="tb-col-os"><span class="overline-title">Action</span></th>
+
+                        </tr>            
+                    </thead>
+                    <tbody>
+                        {% for endpoint in data_source.endpoints.all %}
+                        <tr>
+                            {% if endpoint.authentication %}
+                            <td class="tb-col-os">{{endpoint.authentication.authentication_url}}</td>
+                            {% else %}
+                            <td class="tb-col-os"><a href="{% url 'create-endpoint_authentication' %}">Enable Auth</a></td>
+                            {% endif %}
+                            <td class="tb-col-os">{{endpoint.route}}</td>
+                            <td class="tb-col-os">{{endpoint.description}}</td>
+                            <td class="tb-col-os">{{endpoint.is_enabled}}</td>
+                            <td class="tb-col-os"><a class="btn btn-secondary" href="{% url 'detail-endpoint' endpoint.pk %}">Fetch </a></td>
+                           
+                        </tr>
+                   
+                        {% endfor %}  
+                    </tbody>
+                </table>
+            </div><!-- .nk-block-head -->
+
+        </div>
+        <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
+            <div class="card-inner-group" data-simplebar>
+                <div class="card-inner">
+                    <div class="user-card">
+                        
+                        <div class="user-info">
+                            <h2 class="nk-block-title">Datasource {{data_source.data_source.name}}</h2>
+                            
+                        </div>
+                        
+                        </div>
+                    </div><!-- .user-card -->
+                </div><!-- .card-inner -->
+                <div class="card-inner">
+                    
+                </div><!-- .card-inner -->
+                <div class="card-inner p-0">
+                    <ul class="link-list-menu">
+                        <li><a href="{% url 'create-endpoint' %}"><em class="icon ni ni-activity-round-fill"></em><span>Create Endpoint</span></a></li>
+                        <li><a href="{% url 'create-credential' %}"><em class="icon ni ni-activity-round-fill"></em><span>Create Credential</span></a></li>
+                        <li><a href="{% url 'create-connection' %}"><em class="icon ni ni-activity-round-fill"></em><span>Create Connection</span></a></li>
+                    </ul>
+                </div><!-- .card-inner -->
+            </div><!-- .card-inner-group -->
+        </div><!-- card-aside -->
+    </div>
+{% endblock %}

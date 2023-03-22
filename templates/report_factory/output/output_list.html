@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+
+{% block toolbar %}
+    <a class="btn btn-primary" href="{% url 'create-output' %}">+ Create </a>
+{% endblock %}
+
+{% block content %}
+<h3>Outputs<h3>
+    <ul>
+        
+      {% for output in outputs %}
+            <div class="card card-bordered">
+                <div class="card-header border-bottom">{{ output.name }} 
+                </div>
+                {% for key in output.keys %}
+                <div class="card-body">
+                    <h5 class="card-title d-line">{{ key }}</h5>
+                </div>
+                {% endfor %}
+               
+            </div>
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}
