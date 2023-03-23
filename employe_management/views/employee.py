@@ -1,6 +1,6 @@
 from django.shortcuts import render, reverse
 from employe_management.forms.employee import EmployeeForm
-from employe_management.models import Employee
+from employe_management.models.employee import Employee
 from django.views.generic import (
     ListView,
     DetailView,
