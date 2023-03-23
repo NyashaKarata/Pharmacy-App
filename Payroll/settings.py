@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "home.apps.HomeConfig",
+    "employee_management.apps.EmployeeManagementConfig",
 ]
 
 MIDDLEWARE = [
