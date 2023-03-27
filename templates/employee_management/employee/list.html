@@ -68,7 +68,7 @@
                                            
                                         </div>
                                     </div><!-- .nk-tb-item -->
-                                    {% for employee in employees %}
+                                    {% for employee in employee %}
                                     <div class="nk-tb-item">
                                         <div class="nk-tb-col nk-tb-col-check">
                                             <div class="custom-control custom-control-sm custom-checkbox notext">
@@ -107,20 +107,7 @@
                                             <span class="tb-status text-success">Active</span>
                                         </div>
                                         <div class="nk-tb-col nk-tb-col-tools">
-                                            <ul class="nk-tb-actions gx-1">
-                                            
-                                                <li>
-                                                    <div class="drodown">
-                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <ul class="link-list-opt no-bdr">
-                                                                <li><a href="html/lms/students-details.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                                <li><a href="#"><em class="icon ni ni-activity-round"></em><span>Activities</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                            <a href="{% url 'detail-employee' employee.pk %}" class="btn btn-dim btn-outline-success">Details</a>
                                         </div>
                                     </div><!-- .nk-tb-item -->
                                     {% endfor %}

@@ -24,10 +24,20 @@ class EmployeeCreateView(CreateView):
         return reverse('list-employees')    
 
 
-class EmployeeDetailView(DetailView):
+class PersonalInfoDetailView(DetailView):
     model = Employee
     context_object_name = "employee"
-    template_name = "employee_management/employee/.html"
+    template_name = "employee_management/employee/personalDetail.html"
+    
+class WorkInfoDetailView(DetailView):
+    model = Employee
+    context_object_name = "employee"
+    template_name = "employee_management/employee/workDetail.html"
+    
+class PayrollInfoDetailView(DetailView):
+    model = Employee
+    context_object_name = "employee"
+    template_name = "employee_management/employee/payrollDetail.html"
 
 
 class EmployeeUpdateView(UpdateView):
@@ -43,7 +53,7 @@ class EmployeeUpdateView(UpdateView):
 class EmployeeDeleteView(DeleteView):
     model = Employee
     context_object_name = "employee"
-    template_name = "employee_management/employee/.html"
+    template_name = "employee_management/employee/delete.html"
     
     def get_success_url(self) -> str:
         return reverse('list-employees')
