@@ -4,46 +4,60 @@
 <html lang="zxx" class="js">
 
 <head>
-    <base href="../">
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
-    <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
-    <!-- Page Title  -->
-    <title>Mercury</title>
-    <!-- StyleSheets  -->
-    <link rel="stylesheet" href="{% static 'assets/css/dashlite.css?ver=3.1.1' %}'">
-    <link id="skin-default" rel="stylesheet" href="{% static 'assets/css/theme.css?ver=3.1.1' %}'">
-    <link id="skin-default" rel="stylesheet" href="{% static 'scss/libs/fontawesome-icons.scss' %}'">
+    <title>Phamex</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href={% static 'assets/css/materialdesignicons.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/vendor.bundle.base.css' %}>
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href={% static 'assets/css/jquery-jvectormap.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/flag-icon.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/owl.carousel.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/owl.theme.default.min.css' %}>
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href={% static 'assets/css/style.css' %}>
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
+  </head>
   
 </head>
 
-<body class="nk-body bg-white has-sidebar ">
-    <div class="nk-app-root">
-        <!-- main @s -->
-        <div class="nk-main ">
+<div class="container-scroller">
             <!-- sidebar @s -->
 
             {% include 'layouts/sidebar.html' %}
+            <div class="container-fluid page-body-wrapper">
+                {% include 'layouts/header.html' %}
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                      <div class="row">
+                        <div class="col-12 grid-margin stretch-card">
+                          <div class="card corona-gradient-card">
+                            <div class="card-body py-0 px-0 px-sm-3">
+                              <div class="row align-items-center">
 
             <!-- sidebar @e -->
             <!-- wrap @s -->
-            <div class="nk-wrap ">
+            {% comment %} <div class="nk-wrap "> {% endcomment %}
                 <!-- main header @s -->
 
-                {% include 'layouts/header.html' %}
+               
                
                 <!-- main header @e -->
                 <!-- content @s -->
-                <div class="nk-content nk-content-fluid">
+                {% comment %} <div class="nk-content nk-content-fluid"> {% endcomment %}
                     {% include 'layouts/messages.html' %}
-                    <div class="container-xl wide-lg">
+           
                         {% block toolbar %}
                             
                         {% endblock %}
-                        <div class="nk-content-body">
+                        {% comment %} <div class="nk-content-body"> {% endcomment %}
                             
 
                             {% block content %}
@@ -52,20 +66,18 @@
 
 
                             {% endblock%}
+                            {% comment %} {% include 'layouts/footer.html' %} {% endcomment %}
+                            
                         </div>
                     </div>
+                  </div>
                 </div>
-                <!-- content @e -->
-                <!-- footer @s -->
-                {% include 'layouts/footer.html' %}
-                <!-- footer @e -->
+              </div>
             </div>
-            <!-- wrap @e -->
+            
         </div>
-        <!-- main @e -->
-    </div>
-    <!-- app-root @e -->
-
+                        </div>
+                    </div>
     <!-- JavaScript -->
     {% include 'layouts/scripts.html' %}
     

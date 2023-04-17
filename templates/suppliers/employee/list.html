@@ -1,0 +1,151 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Employees</h3>
+                        </div><!-- .nk-block-head-content -->
+                        <div class="nk-block-head-content">
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="more-options"><em class="icon ni ni-more-v"></em></a>
+                                <div class="toggle-expand-content" data-content="more-options">
+                                    <ul class="nk-block-tools g-3">
+                                        <li>
+                                            <div class="form-control-wrap">
+                                                <div class="form-icon form-icon-right">
+                                                    <em class="icon ni ni-search"></em>
+                                                </div>
+                                                <input type="text" class="form-control" id="default-04" placeholder="Search by name">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="drodown">
+                                                <a href="#" class="dropdown-toggle dropdown-indicator btn btn-outline-light btn-white" data-bs-toggle="dropdown">Status</a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <ul class="link-list-opt no-bdr">
+                                                        <li><a href="#"><span>Actived</span></a></li>
+                                                        <li><a href="#"><span>Inactived</span></a></li>
+                                                        <li><a href="#"><span>Blocked</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nk-block-tools-opt">
+                                            <a class="btn btn-icon btn-primary d-md-none" data-bs-toggle="modal" href="#student-add"><em class="icon ni ni-plus"></em></a>
+                                            <a class="btn btn-primary d-none d-md-inline-flex" data-bs-toggle="modal" href="{% url 'create-employee' %}"><em class="icon ni ni-plus"></em><span>Add</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card">
+                        <div class="card-inner-group">
+                            <div class="card-inner p-0">
+                                <div class="nk-tb-list nk-tb-ulist">
+                                    <div class="nk-tb-item nk-tb-head">
+                                        <div class="nk-tb-col nk-tb-col-check">
+                                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                                <input type="checkbox" class="custom-control-input" id="uid">
+                                                <label class="custom-control-label" for="uid"></label>
+                                            </div>
+                                        </div>
+                                        <div class="nk-tb-col"><span class="sub-text">First Name</span></div>
+                                        <div class="nk-tb-col tb-col-mb"><span class="sub-text d-lg-flex d-none">Last Name</span></div>
+                                        <div class="nk-tb-col tb-col-md"><span class="sub-text">Phone</span></div>
+                                        <div class="nk-tb-col tb-col-lg"><span class="sub-text">Job Title</span></div>
+                                        <div class="nk-tb-col tb-col-lg"><span class="sub-text">Employee Code</span></div>
+                                        <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
+                                        <div class="nk-tb-col nk-tb-col-tools">
+                                           
+                                        </div>
+                                    </div><!-- .nk-tb-item -->
+                                    {% for employee in employee %}
+                                    <div class="nk-tb-item">
+                                        <div class="nk-tb-col nk-tb-col-check">
+                                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                                <input type="checkbox" class="custom-control-input" id="uid1">
+                                                <label class="custom-control-label" for="uid1"></label>
+                                            </div>
+                                        </div>
+                                        <div class="nk-tb-col">
+                                          
+                                            <a href="html/lms/students-details.html">
+                                                <div class="user-card">
+                                                   
+                                                    <div class="user-info">
+                                                        <span class="tb-lead">{{employee.first_name}}<span class="dot dot-success d-md-none ms-1"></span></span>
+                                                        <span>{{employee.work_email}}</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-mb">
+                                            <span class="tb-lead d-lg-flex d-none">{{employee.last_name}}</span>
+                                            <div class="d-lg-flex d-none">
+                                            
+                                            </div>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-md">
+                                            <span>{{employee.phone}}</span>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-lg">
+                                            <span>{{employee.job_title}}</span>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-lg">
+                                            <span class="badge badge-dot badge-dot bg-warning">{{employee.employee_code}}</span>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-md">
+                                            <span class="tb-status text-success">Active</span>
+                                        </div>
+                                        <div class="nk-tb-col nk-tb-col-tools">
+                                            <a href="{% url 'detail-employee' employee.pk %}" class="btn btn-dim btn-outline-success">Details</a>
+                                        </div>
+                                    </div><!-- .nk-tb-item -->
+                                    {% endfor %}
+                                </div><!-- .nk-tb-list -->
+                            </div>
+                            <div class="card-inner">
+                                <div class="nk-block-between-md g-3">
+                                    <div class="g">
+                                        <ul class="pagination justify-content-center justify-content-md-start">
+                                            <li class="page-item"><a class="page-link" href="#"><em class="icon ni ni-chevrons-left"></em></a></li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><span class="page-link"><em class="icon ni ni-more-h"></em></span></li>
+                                            <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">7</a></li>
+                                            <li class="page-item"><a class="page-link" href="#"><em class="icon ni ni-chevrons-right"></em></a></li>
+                                        </ul><!-- .pagination -->
+                                    </div>
+                                    <div class="g">
+                                        <div class="pagination-goto d-flex justify-content-center justify-content-md-start gx-3">
+                                            <div>Page</div>
+                                            <div>
+                                                <select class="form-select js-select2" data-search="on" data-dropdown="xs center">
+                                                    <option value="page-1">1</option>
+                                                    <option value="page-2">2</option>
+                                                
+                                                </select>
+                                            </div>
+                                            <div>OF 102</div>
+                                        </div>
+                                    </div><!-- .pagination-goto -->
+                                </div><!-- .nk-block-between -->
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

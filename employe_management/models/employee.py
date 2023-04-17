@@ -21,7 +21,13 @@ class Employee(models.Model):
     phone = models.CharField(max_length=255)
     employment_type = models.CharField(max_length=255)
     job_title = models.CharField(max_length=255)
-    #Add pay details
+    
+    #payroll information
+    rate_per_hour = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    # payee = models.DecimalField(max_digits=50, decimal_places=2, null=True)
+    # other_tax = models.DecimalField(max_digits=50, decimal_places=2, null=True)
+    hours_worked = models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    #work information
     bank = models.CharField(max_length=50, null=True)
     bank_account_name = models.CharField(max_length=255, null=True)
     bank_account_number = models.CharField(max_length=35, null=True)
