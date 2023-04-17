@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "employe_management.apps.EmployeManagementConfig",
     "payroll_management.apps.PayrollManagementConfig",
     "drugs.apps.DrugsConfig",
+    "suppliers.apps.SuppliersConfig",
     'crispy_forms',
 ]
 

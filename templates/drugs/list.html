@@ -14,15 +14,21 @@
             </div>
           </div>
           
-          <div class="row ">
+         
             
             <div class="col-12 grid-margin">
+                
               <div class="card">
+                
                 <div class="card-body">
+                    <div class="position-relative">
+                        <!-- Your element here -->
+                        <a href="{% url 'create-drug' %}" class="btn btn-inverse-success btn-fw position-absolute top-0 end-0 m-3">Add Drug</a>
+                      </div>
                   <h4 class="card-title">Drug List</h4>
-                  <div class="">
-                  <button type="button" class="btn btn-inverse-success btn-fw">Success</button>
-                  <div/>
+                  
+                  {% comment %} <button type="button" class="btn btn-inverse-success btn-fw">Success</button> {% endcomment %}
+                  
                   <div class="table-responsive">
                    
                     <table class="table table-hover">
@@ -35,122 +41,40 @@
                               </label>
                             </div>
                           </th>
-                          <th> Client Name </th>
-                          <th> Order No </th>
-                          <th> Product Cost </th>
-                          <th> Project </th>
-                          <th> Payment Mode </th>
-                          <th> Start Date </th>
-                          <th> Payment Status </th>
+                          <th class="card-title"> Drug Name </th>
+                          <th class="card-title"> Drug Code </th>
+                          <th class="card-title"> Selling Price </th>
+                          <th class="card-title"> Quantity </th>
+                          <th class="card-title"> Strength </th>
+                          <th class="card-title"> Date Supplied </th>
+                          <th class="card-title"> Expiry Date </th>
                         </tr>
                         
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
+                        {% for drug in drugs %}
+                        <tr >
+                          <td >
                             <div class="form-check form-check-muted m-0">
                               <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input">
                               </label>
                             </div>
                           </td>
-                          <td>
-                            <img src="assets/images/faces/face1.jpg" alt="image" />
-                            <span class="pl-2">Henry Klein</span>
+                          <td class="card-title">
+                          {{ drug.name }}
                           </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> Dashboard </td>
-                          <td> Credit card </td>
-                          <td> 04 Dec 2019 </td>
-                          <td>
-                            <div class="badge badge-outline-success">Approved</div>
-                          </td>
+                          <td class="card-title"><a href=""> {{ drug.code }} <a/> </td>
+                          <td class="card-title">$ {{ drug.price }} </td>
+                          <td class="card-title"> {{ drug.quantity }}</td>
+                          <td class="card-title"> {{ drug.strength }} </td>
+                          <td class="card-title"> {{ drug.date_supplied }}</td>
+                          <td class="card-title">{{ drug.expiry_date }}</td>
+                          <td> <a href="{% url 'update-drug' drug.pk %}" class="btn btn-inverse-success btn-fw">Edit</a></td>
+                          <td><a href="{% url 'delete-drug' drug.pk %}" class="btn btn-inverse-danger btn-fw">Delete</a> </td>
+                          
                         </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
-                          <td>
-                            <img src="assets/images/faces/face2.jpg" alt="image" />
-                            <span class="pl-2">Estella Bryan</span>
-                          </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> Website </td>
-                          <td> Cash on delivered </td>
-                          <td> 04 Dec 2019 </td>
-                          <td>
-                            <div class="badge badge-outline-warning">Pending</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
-                          <td>
-                            <img src="assets/images/faces/face5.jpg" alt="image" />
-                            <span class="pl-2">Lucy Abbott</span>
-                          </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> App design </td>
-                          <td> Credit card </td>
-                          <td> 04 Dec 2019 </td>
-                          <td>
-                            <div class="badge badge-outline-danger">Rejected</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
-                          <td>
-                            <img src="assets/images/faces/face3.jpg" alt="image" />
-                            <span class="pl-2">Peter Gill</span>
-                          </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> Development </td>
-                          <td> Online Payment </td>
-                          <td> 04 Dec 2019 </td>
-                          <td>
-                            <div class="badge badge-outline-success">Approved</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
-                          <td>
-                            <img src="assets/images/faces/face4.jpg" alt="image" />
-                            <span class="pl-2">Sallie Reyes</span>
-                          </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> Website </td>
-                          <td> Credit card </td>
-                          <td> 04 Dec 2019 </td>
-                          <td>
-                            <div class="badge badge-outline-success">Approved</div>
-                          </td>
-                        </tr>
+                        {% endfor%}
                       </tbody>
                     </table>
                   </div>

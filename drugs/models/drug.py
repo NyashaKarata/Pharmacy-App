@@ -1,20 +1,21 @@
 from django.db import models
 
-# EMPLOYMENT_CHOICES = (
-#     ('Part-time'),
-#     ('Full-time'),
-#     ('Contract')
-# )
+
 CATEGORIES = (
         ('M', 'Male'),
         ('F', 'Female')
     )
 class Drug(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    employee_code = models.CharField(max_length=255)
-    marital_status = models.CharField(max_length=250)
+    name = models.CharField(max_length=255)
+    code = models.CharField(max_length=255, null=True)
+    date_supplied = models.DateField(max_length=255)
+    price = models.DecimalField(max_digits=6, max_length=6, decimal_places=2)
+    quantity =  models.IntegerField(max_length=5, null=True)
+    expiry_date = models.DateField(max_length=255)
+    strength = models.CharField(max_length=255)
+    # supplier = models.ForeignKey(Supplier,null=True,on_delete=models.CASCADE,blank=True)
+    
    
     
     def __str__(self) -> str:
-        return self.drug_name
+        return self.name

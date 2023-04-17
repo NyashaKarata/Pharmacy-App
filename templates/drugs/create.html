@@ -9,6 +9,56 @@
 </div>
 </div>
 </div>
-<h3>Create Drugs</h3>
+
+
+
+<div class="col-md-10 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Add New Drug</h4>
+        <p class="card-description">  </p>
+        <form class="forms-sample" action="{% url 'create-drug' %}" enctype = "multipart/form-data" method="post">
+            {%csrf_token%}
+          <div class="form-group">
+            <label for="exampleInputUsername1">Drug Name</label>
+            <input type="text" name='name' class="form-control" id="exampleInputUsername1" placeholder="Enter Drug Name">
+          </div>
+         
+          <div class="form-group">
+            <label for="exampleInputUsername1">Date Supplied</label>
+            <input type="date" name='date_supplied' class="form-control" id="exampleInputUsername1" placeholder="Enter Date Supplied">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputUsername1">Selling Price</label>
+            <input type="text" name='price' class="form-control" id="exampleInputUsername1" placeholder="Enter Selling Price">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputUsername1">Quantity</label>
+            <input type="text" name='quantity' class="form-control" id="exampleInputUsername1" placeholder="Enter Quantity">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputUsername1">Expiry Date</label>
+            <input type="date" name='expiry_date' class="form-control" id="exampleInputUsername1" placeholder="Enter Expiry Date">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputUsername1">Strength</label>
+            <input type="text" name='strength' class="form-control" id="exampleInputUsername1" placeholder="Enter Strength">
+          </div>
+        
+          
+          
+          <button type="submit" class="btn btn-inverse-success btn-fw">Submit</button>
+          <button class="btn btn-dark">Clear</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+
    
 {% endblock %}
